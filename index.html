@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>S. ATM — Women's Collection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ivory:   #F7F4EF;
+      --blush:   #E8D5C4;
+      --wine:    #6B2D3E;
+      --charcoal:#1A1A1A;
+      --mid:     #7A7068;
+      --line:    #DDD6CC;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ivory);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ───────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 52px;
+      background: rgba(247,244,239,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      transition: padding .3s;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 500;
+      letter-spacing: .15em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--wine); }
+
+    .nav-links {
+      display: flex; gap: 38px; list-style: none;
+    }
+    .nav-links a {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--charcoal); text-decoration: none;
+      position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--wine);
+      transition: width .3s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-icons { display: flex; gap: 20px; align-items: center; }
+    .nav-icons button {
+      background: none; border: none; cursor: pointer;
+      color: var(--charcoal); font-size: 1.1rem;
+    }
+    .nav-cart-count {
+      font-size: .68rem; background: var(--wine); color: #fff;
+      border-radius: 50%; width: 16px; height: 16px;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-left: 2px; vertical-align: top;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-text {
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 120px 60px 80px;
+    }
+
+    .hero-eyebrow {
+      font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--wine); margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.4rem, 5.5vw, 5.8rem);
+      font-weight: 300; line-height: 1.05;
+      color: var(--charcoal);
+      margin-bottom: 32px;
+    }
+    .hero-headline em {
+      font-style: italic; color: var(--wine);
+    }
+
+    .hero-sub {
+      font-size: .85rem; line-height: 1.8;
+      color: var(--mid); max-width: 360px;
+      margin-bottom: 52px;
+    }
+
+    .hero-cta {
+      display: flex; gap: 20px; align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--charcoal); color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      padding: 16px 40px; text-decoration: none;
+      transition: background .3s;
+    }
+    .btn-primary:hover { background: var(--wine); }
+
+    .btn-ghost {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--charcoal); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-ghost::after { content: '→'; }
+
+    .hero-image {
+      position: relative; overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(.97) saturate(.9);
+    }
+
+    /* floating tag */
+    .hero-tag {
+      position: absolute; bottom: 60px; left: -36px;
+      background: #fff; padding: 18px 28px;
+      border-left: 3px solid var(--wine);
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    }
+    .hero-tag p { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--mid); }
+    .hero-tag strong { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; }
+
+    /* ── MARQUEE ────────────────────────────────────────────── */
+    .marquee-strip {
+      background: var(--wine); color: #fff;
+      padding: 12px 0; overflow: hidden;
+      display: flex; gap: 0;
+    }
+    .marquee-inner {
+      display: flex; gap: 0;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-inner span {
+      font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+      padding: 0 40px;
+    }
+    .marquee-inner span::before { content: '✦  '; }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION COMMONS ────────────────────────────────────── */
+    .section-label {
+      font-size: .62rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--wine); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300; line-height: 1.15;
+    }
+
+    /* ── FEATURED COLLECTION ────────────────────────────────── */
+    .collection {
+      padding: 100px 52px;
+    }
+    .collection-head {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    .collection-link {
+      font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--charcoal); text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid var(--charcoal);
+      padding-bottom: 2px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .product-card {
+      cursor: pointer;
+    }
+    .product-img {
+      position: relative; overflow: hidden;
+      aspect-ratio: 3/4; background: var(--blush);
+      margin-bottom: 18px;
+    }
+    .product-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+    }
+    .product-card:hover .product-img img { transform: scale(1.06); }
+
+    .product-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--wine); color: #fff;
+      font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+      padding: 5px 12px;
+    }
+
+    .product-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: var(--charcoal); color: #fff;
+      text-align: center; padding: 14px;
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      transform: translateY(100%);
+      transition: transform .3s;
+    }
+    .product-card:hover .product-overlay { transform: translateY(0); }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400; margin-bottom: 6px;
+    }
+    .product-meta {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .product-price { font-size: .88rem; color: var(--charcoal); }
+    .product-price s { color: var(--mid); margin-right: 6px; font-size: .8rem; }
+    .product-colors { display: flex; gap: 5px; }
+    .color-dot {
+      width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--line);
+    }
+
+    /* ── EDITORIAL ──────────────────────────────────────────── */
+    .editorial {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+    .editorial-image {
+      position: relative; overflow: hidden;
+    }
+    .editorial-image img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .editorial-text {
+      background: var(--charcoal); color: #fff;
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 80px 70px;
+    }
+    .editorial-text .section-label { color: var(--blush); }
+    .editorial-text .section-title { color: #fff; margin-bottom: 24px; }
+    .editorial-text p {
+      font-size: .85rem; line-height: 1.85; color: #b5afa8; margin-bottom: 40px;
+    }
+    .editorial-text .btn-primary {
+      align-self: flex-start;
+      background: var(--wine);
+    }
+    .editorial-text .btn-primary:hover { background: var(--blush); color: var(--charcoal); }
+
+    /* ── WIDE BANNER ────────────────────────────────────────── */
+    .banner {
+      position: relative; height: 480px; overflow: hidden;
+    }
+    .banner img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(.55);
+    }
+    .banner-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; color: #fff;
+    }
+    .banner-content .section-label { color: var(--blush); margin-bottom: 16px; }
+    .banner-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      font-weight: 300; margin-bottom: 32px;
+    }
+
+    /* ── SECOND GRID ────────────────────────────────────────── */
+    .collection-2 { padding: 100px 52px; background: #fff; }
+
+    /* ── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials {
+      padding: 100px 52px;
+      text-align: center;
+    }
+    .testimonials .section-title { margin-bottom: 60px; }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 40px;
+    }
+    .testimonial-card {
+      border: 1px solid var(--line); padding: 40px 32px;
+    }
+    .testimonial-stars { color: var(--wine); font-size: 1rem; margin-bottom: 20px; }
+    .testimonial-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-style: italic; line-height: 1.7;
+      margin-bottom: 24px; color: var(--charcoal);
+    }
+    .testimonial-author {
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── NEWSLETTER ─────────────────────────────────────────── */
+    .newsletter {
+      background: var(--charcoal); color: #fff;
+      padding: 80px 52px; text-align: center;
+    }
+    .newsletter .section-label { color: var(--blush); margin-bottom: 12px; }
+    .newsletter h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 300;
+      margin-bottom: 14px;
+    }
+    .newsletter p { font-size: .84rem; color: #b5afa8; margin-bottom: 40px; }
+    .newsletter-form {
+      display: flex; justify-content: center; gap: 0; max-width: 480px; margin: 0 auto;
+    }
+    .newsletter-form input {
+      flex: 1; padding: 16px 22px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+      border-right: none; color: #fff; font-family: 'Jost', sans-serif;
+      font-size: .82rem; outline: none;
+    }
+    .newsletter-form input::placeholder { color: #7a7068; }
+    .newsletter-form button {
+      padding: 16px 32px;
+      background: var(--wine); color: #fff; border: none; cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+      transition: background .3s;
+    }
+    .newsletter-form button:hover { background: var(--blush); color: var(--charcoal); }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: #0e0e0e; color: #888; padding: 70px 52px 36px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px; margin-bottom: 60px;
+    }
+    .footer-brand .nav-logo { font-size: 1.5rem; display: block; margin-bottom: 18px; color: #fff; }
+    .footer-brand p { font-size: .8rem; line-height: 1.8; color: #666; }
+    .footer-col h4 {
+      font-size: .65rem; letter-spacing: .25em; text-transform: uppercase;
+      color: #fff; margin-bottom: 22px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a {
+      font-size: .8rem; color: #666; text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--blush); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid #222; padding-top: 28px;
+      font-size: .72rem; color: #444;
+    }
+    .social-links { display: flex; gap: 18px; }
+    .social-links a { color: #555; text-decoration: none; font-size: .72rem; letter-spacing: .1em; transition: color .2s; }
+    .social-links a:hover { color: var(--blush); }
+
+    /* ── UTILITY ────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-image { height: 60vw; }
+      .hero-text { padding: 80px 24px 50px; }
+      .editorial { grid-template-columns: 1fr; }
+      .collection, .collection-2, .testimonials { padding: 60px 24px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .banner-content h2 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">S.<span>ATM</span></a>
+  <ul class="nav-links">
+    <li><a href="#">New Arrivals</a></li>
+    <li><a href="#">Dresses</a></li>
+    <li><a href="#">Tops & Blouses</a></li>
+    <li><a href="#">Outerwear</a></li>
+    <li><a href="#">Accessories</a></li>
+    <li><a href="#">Sale</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button title="Search">&#x2315;</button>
+    <button title="Wishlist">&#9825;</button>
+    <button title="Cart">&#x1F6CD; <span class="nav-cart-count">2</span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Summer Collection 2025</p>
+    <h1 class="hero-headline">Dressed in<br/><em>Your Power.</em></h1>
+    <p class="hero-sub">S. ATM is where softness meets strength. Each piece is crafted for the woman who moves through the world with intention — effortlessly elegant, always herself.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="#">Shop Collection</a>
+      <a class="btn-ghost" href="#">View Lookbook</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=900&q=80" alt="S. ATM Campaign"/>
+    <div class="hero-tag">
+      <p>Featured Piece</p>
+      <strong>The Ivory Drape</strong>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>New Arrivals</span><span>Free Shipping Over Rs. 5,000</span><span>Summer Edit 2025</span>
+    <span>Effortless Elegance</span><span>Women's Exclusives</span><span>Curated Essentials</span>
+    <span>New Arrivals</span><span>Free Shipping Over Rs. 5,000</span><span>Summer Edit 2025</span>
+    <span>Effortless Elegance</span><span>Women's Exclusives</span><span>Curated Essentials</span>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section class="collection">
+  <div class="collection-head">
+    <div>
+      <p class="section-label">Featured</p>
+      <h2 class="section-title">New Arrivals</h2>
+    </div>
+    <a class="collection-link" href="#">View All →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Silk Wrap Dress"/>
+        <span class="product-badge">New</span>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Silk Wrap Midi Dress</p>
+      <div class="product-meta">
+        <span class="product-price">Rs. 8,500</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#c4a882;"></span>
+          <span class="color-dot" style="background:#6B2D3E;"></span>
+          <span class="color-dot" style="background:#1A1A1A;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&q=80" alt="Linen Co-ord"/>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Linen Co-ord Set</p>
+      <div class="product-meta">
+        <span class="product-price"><s>Rs. 11,200</s> Rs. 8,900</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#e8d5c4;"></span>
+          <span class="color-dot" style="background:#8E9B80;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1603400521630-9f2de124b33b?w=600&q=80" alt="Embroidered Kurta"/>
+        <span class="product-badge">Bestseller</span>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Embroidered Kurta</p>
+      <div class="product-meta">
+        <span class="product-price">Rs. 6,200</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#fff;"></span>
+          <span class="color-dot" style="background:#f7f4ef;"></span>
+          <span class="color-dot" style="background:#6B2D3E;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=600&q=80" alt="Draped Blazer"/>
+        <span class="product-badge">Limited</span>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Oversized Draped Blazer</p>
+      <div class="product-meta">
+        <span class="product-price">Rs. 14,500</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#beb0a4;"></span>
+          <span class="color-dot" style="background:#1A1A1A;"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDITORIAL -->
+<section class="editorial">
+  <div class="editorial-image">
+    <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&q=80" alt="S. ATM Story"/>
+  </div>
+  <div class="editorial-text">
+    <p class="section-label">Our Ethos</p>
+    <h2 class="section-title">Crafted for the<br/>Modern Woman</h2>
+    <p>At S. ATM, every stitch carries purpose. We design for women who don't choose between comfort and elegance — they demand both. From the boardroom to the bazaar, our pieces move as freely as you do.</p>
+    <p>Sourced from premium fabrics, finished by skilled artisans — slow fashion, made to last a lifetime.</p>
+    <a class="btn-primary" href="#">Read Our Story</a>
+  </div>
+</section>
+
+<!-- WIDE BANNER -->
+<div class="banner">
+  <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80" alt="S. ATM Banner"/>
+  <div class="banner-content">
+    <p class="section-label">Limited Time</p>
+    <h2>The Festive Edit<br/>is Here</h2>
+    <a class="btn-primary" href="#">Explore Festive Wear</a>
+  </div>
+</div>
+
+<!-- SECOND PRODUCT GRID -->
+<section class="collection-2">
+  <div class="collection-head">
+    <div>
+      <p class="section-label">Essentials</p>
+      <h2 class="section-title">You'll Live In These</h2>
+    </div>
+    <a class="collection-link" href="#">Browse All →</a>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?w=600&q=80" alt="Wide-Leg Trousers"/>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Wide-Leg Trousers</p>
+      <div class="product-meta">
+        <span class="product-price">Rs. 5,800</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#1A1A1A;"></span>
+          <span class="color-dot" style="background:#beb0a4;"></span>
+          <span class="color-dot" style="background:#c4a882;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=600&q=80" alt="Lace Blouse"/>
+        <span class="product-badge">New</span>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Lace-Trim Blouse</p>
+      <div class="product-meta">
+        <span class="product-price">Rs. 4,900</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#fff;"></span>
+          <span class="color-dot" style="background:#e8d5c4;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=600&q=80" alt="Maxi Skirt"/>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Pleated Maxi Skirt</p>
+      <div class="product-meta">
+        <span class="product-price"><s>Rs. 7,500</s> Rs. 5,600</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#8E9B80;"></span>
+          <span class="color-dot" style="background:#c4a882;"></span>
+          <span class="color-dot" style="background:#6B2D3E;"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1602810319428-019690571b5b?w=600&q=80" alt="Knit Cardigan"/>
+        <div class="product-overlay">Quick Add</div>
+      </div>
+      <p class="product-name">Oversized Knit Cardigan</p>
+      <div class="product-meta">
+        <span class="product-price">Rs. 7,200</span>
+        <div class="product-colors">
+          <span class="color-dot" style="background:#e8d5c4;"></span>
+          <span class="color-dot" style="background:#beb0a4;"></span>
+          <span class="color-dot" style="background:#1A1A1A;"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="section-label">Love Letters</p>
+  <h2 class="section-title">What Our Customers Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"The Silk Wrap Dress is the most beautiful thing in my wardrobe. I get compliments every single time I wear it."</p>
+      <p class="testimonial-author">— Zara A., Lahore</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"S. ATM truly understands the Pakistani woman. The fits are perfect, the fabrics are luxurious, and delivery was so fast."</p>
+      <p class="testimonial-author">— Nadia K., Karachi</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-quote">"I bought the linen co-ord set for Eid and everyone kept asking where it was from. This brand is elite."</p>
+      <p class="testimonial-author">— Sana M., Islamabad</p>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <p class="section-label">Stay Connected</p>
+  <h2>First to Know, Always</h2>
+  <p>Join the S. ATM circle. Get early access to drops, styling notes, and exclusive offers — delivered to you.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="Your email address"/>
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#">S.<span style="color:#E8D5C4">ATM</span></a>
+      <p>Premium women's fashion rooted in elegance, craftsmanship, and the spirit of the modern Pakistani woman. Made with love, worn with pride.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Dresses</a></li>
+        <li><a href="#">Tops & Blouses</a></li>
+        <li><a href="#">Outerwear</a></li>
+        <li><a href="#">Accessories</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns & Exchanges</a></li>
+        <li><a href="#">Track My Order</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 S. ATM. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+      <a href="#">Facebook</a>
+      <a href="#">Pinterest</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
